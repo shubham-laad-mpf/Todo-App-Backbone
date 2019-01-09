@@ -1,19 +1,19 @@
 var TodoItem = Backbone.Model.extend({
     defaults: {
-        isCompleted: false
+        completed: false
     },
 
-    url: 'fakeUrl',
+    urlRoot: 'https://jsonplaceholder.typicode.com/todos',
 
     validate: function (atts) {
         // When we save todo Item and don't supply description 
         // then It wont save to server.
-        if (!atts.description) {
-            return 'Description is required';
+        if (!atts.title) {
+            return 'Title is required';
         }
     },
 
     toggle: function () {
-        this.set('isCompleted', !this.get('isCompleted'));
+        this.set('completed', !this.get('completed'));
     }
 });

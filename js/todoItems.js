@@ -1,4 +1,6 @@
 var TodoItems = Backbone.Collection.extend({
-    Model: TodoItem
+    model: TodoItem,
+
+    url: 'https://jsonplaceholder.typicode.com/todos'
 });
 

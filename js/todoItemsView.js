@@ -16,7 +16,7 @@ var TodoItemsView = Backbone.View.extend({
 
     onRemoveTodoItem: function (todoItem) {
         this.$el.find("[data-id='" + todoItem.id + "']").remove();
-        console.log('remoeved' + todoItem);
+        console.log(todoItem.toJSON());
     },
 
     events: {
@@ -33,8 +33,14 @@ var TodoItemsView = Backbone.View.extend({
     onClickAdd: function () {
         var $textbox = this.$('.js-input');
         if ($textbox.val()) {
-            var todoItem = new TodoItem({ description: $textbox.val() });
-            this.collection.add(todoItem);
+            var todoItem = new TodoItem({ title: $textbox.val() });
+            this.collection.create(todoItem);
+            /*
+                above line add() and save() both are same
+                todoItem.save();
+                this.collection.add(todoItem);
+            */
+
             $textbox.val('');
         }
     },
