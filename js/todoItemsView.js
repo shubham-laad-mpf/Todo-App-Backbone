@@ -6,11 +6,17 @@ var TodoItemsView = Backbone.View.extend({
             throw new Error("Collection is not specified");
         }
         this.collection.on("add", this.onAddTodoItem, this);
+        this.collection.on("remove", this.onRemoveTodoItem, this);
     },
 
     onAddTodoItem: function (todoItem) {
         var todoItemView = new TodoItemView({ model: todoItem });
         this.$el.append(todoItemView.render().$el);
+    },
+
+    onRemoveTodoItem: function (todoItem) {
+        this.$el.find("[data-id='" + todoItem.id + "']").remove();
+        console.log('remoeved' + todoItem);
     },
 
     events: {

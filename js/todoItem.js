@@ -3,6 +3,8 @@ var TodoItem = Backbone.Model.extend({
         isCompleted: false
     },
 
+    url: 'fakeUrl',
+
     validate: function (atts) {
         // When we save todo Item and don't supply description 
         // then It wont save to server.
