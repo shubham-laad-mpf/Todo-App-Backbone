@@ -23,12 +23,15 @@ var TodoItemView = Backbone.View.extend({
         this.model.save();
     },
 
+    template: _.template('<input type="checkbox" class="js-checkbox" <% if(completed) print("checked") %>/> <% print(title) %> <button class="js-delete">delete</button>'),
+
     render: function () {
         this.$el.attr("data-id", this.model.get('id'));
         var isCompleted = this.model.get('completed');
-        var checked = isCompleted ? 'checked' : '';
         this.$el.toggleClass("completed", isCompleted);
-        this.$el.html('<input type="checkbox" class="js-checkbox"' + checked + '/>' + this.model.escape("title") + '<button class="js-delete">delete</button>'); // escape() use for html encode security
+
+        var attr = this.model.toJSON();
+        this.$el.html(this.template(attr));
         return this;
     }
 });

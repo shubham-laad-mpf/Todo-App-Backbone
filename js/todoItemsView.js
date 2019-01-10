@@ -45,10 +45,11 @@ var TodoItemsView = Backbone.View.extend({
         }
     },
 
-    render: function () {
+    template: _.template('<input type="text" autofocus placeholder="Enter Description" class="js-input" /> <button class="js-add">Add</button>'),
 
-        this.$el.append('<input type="text" autofocus placeholder="Enter Description" class="js-input" />');
-        this.$el.append('<button class="js-add">Add</button>');
+    render: function () {
+        this.$el.append(this.template());
+
         this.collection.each(function (todoItem) {
             var view = new TodoItemView({ model: todoItem });
             this.$el.append(view.render().$el);
