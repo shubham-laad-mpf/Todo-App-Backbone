@@ -1,5 +1,5 @@
 var TodoItemsView = Backbone.View.extend({
-    tagName: 'ul',
+    tagName: 'section',
 
     initialize: function (options) {
         if (!(options && options.collection)) {
@@ -11,7 +11,7 @@ var TodoItemsView = Backbone.View.extend({
 
     onAddTodoItem: function (todoItem) {
         var todoItemView = new TodoItemView({ model: todoItem });
-        this.$el.append(todoItemView.render().$el);
+        this.$('.js-todoItems').append(todoItemView.render().$el);
     },
 
     onRemoveTodoItem: function (todoItem) {
@@ -45,15 +45,10 @@ var TodoItemsView = Backbone.View.extend({
         }
     },
 
-    template: _.template('<input type="text" autofocus placeholder="Enter Description" class="js-input" /> <button class="js-add">Add</button>'),
+    template: _.template('<form><input type="text" autofocus placeholder="Enter Description" class="js-input" /><button class="js-add">Add</button></form><ul class="js-todoItems"></ul>'),
 
     render: function () {
         this.$el.append(this.template());
-
-        this.collection.each(function (todoItem) {
-            var view = new TodoItemView({ model: todoItem });
-            this.$el.append(view.render().$el);
-        }, this);
         return this;
     }
 })

@@ -23,7 +23,7 @@ var TodoItemView = Backbone.View.extend({
         this.model.save();
     },
 
-    template: _.template('<input type="checkbox" class="js-checkbox" <% if(completed) print("checked") %>/> <% print(title) %> <button class="js-delete">delete</button>'),
+    template: _.template('<label><input type="checkbox" class="js-checkbox" <% if(completed) print("checked") %>/> <% print(title) %></label> <button class="js-delete">delete</button>'),
 
     render: function () {
         this.$el.attr("data-id", this.model.get('id'));
